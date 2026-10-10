@@ -1,0 +1,1107 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="The Sound Within by FamChord. Ruang untuk belajar teori musik, memahami harmoni, dan melatih pendengaran.">
+    <title>THE SOUND WITHIN — FamChord</title>
+
+    <style>
+        :root {
+            --bg: #080808;
+            --surface: #121212;
+            --surface-light: #1b1b1b;
+            --white: #f8f8f5;
+            --gray: #a5a5a0;
+            --line: #333330;
+            --serif: Georgia, "Times New Roman", serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--white);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 44px));
+            margin: auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 8, 8, .94);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #252525;
+        }
+
+        .navbar {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            background: var(--white);
+            color: var(--bg);
+            border-radius: 12px;
+            font-size: 25px;
+        }
+
+        .brand-name {
+            font-size: 19px;
+            line-height: 1.2;
+        }
+
+        .brand-name small {
+            display: block;
+            margin-top: 5px;
+            color: var(--gray);
+            font-size: 9px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+        }
+
+        .nav-links a {
+            color: #c4c4bf;
+            font-size: 13px;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-button,
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--white);
+            color: var(--bg);
+            border: 1px solid var(--white);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 750;
+            transition: .25s;
+        }
+
+        .nav-button:hover,
+        .button:hover {
+            background: #d8d8d3;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            color: var(--white);
+            background: transparent;
+            border-color: #555550;
+        }
+
+        .button-outline:hover {
+            background: #202020;
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            background: transparent;
+            border: 1px solid #444;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        /* WELCOME PAGE */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 105px 0 95px;
+            border-bottom: 1px solid #252525;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            top: -190px;
+            right: -130px;
+            border: 1px solid #242424;
+            border-radius: 50%;
+            box-shadow: 0 0 0 45px #0d0d0d,
+                        0 0 0 46px #242424,
+                        0 0 0 100px #0b0b0b,
+                        0 0 0 101px #202020;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .eyebrow {
+            color: var(--gray);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #383838;
+            border-radius: 50px;
+            padding: 8px 13px;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: #deded9;
+        }
+
+        .hero-label span {
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            margin: 28px 0 22px;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(52px, 7vw, 94px);
+            letter-spacing: -5px;
+            line-height: .98;
+        }
+
+        .hero h1 em {
+            color: #92928c;
+            font-weight: 400;
+        }
+
+        .hero-copy {
+            max-width: 520px;
+            color: #b6b6b0;
+            font-size: 15px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-note {
+            margin-top: 25px;
+            color: #777772;
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        /* ILUSTRASI PIANO */
+
+        .piano-card {
+            position: relative;
+            padding: 25px;
+            min-height: 390px;
+            border: 1px solid #353535;
+            border-radius: 5px;
+            background: radial-gradient(ellipse at top, #292929, #111 68%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .piano-card-top {
+            display: flex;
+            justify-content: space-between;
+            color: #aaa;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .treble {
+            position: absolute;
+            top: 52px;
+            left: 28px;
+            font-size: 100px;
+            color: #f4f4ef;
+            opacity: .9;
+            line-height: 1;
+        }
+
+        .piano-keyboard {
+            display: flex;
+            position: relative;
+            height: 165px;
+            margin-top: 100px;
+        }
+
+        .white-key {
+            position: relative;
+            flex: 1;
+            background: #f7f7f2;
+            border: 1px solid #aaa;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .black-key {
+            position: absolute;
+            top: 0;
+            right: -29%;
+            width: 60%;
+            height: 61%;
+            background: linear-gradient(90deg, #333, #050505);
+            border: 1px solid #050505;
+            border-radius: 0 0 4px 4px;
+            z-index: 2;
+            box-shadow: 0 5px 8px #0008;
+        }
+
+        .piano-caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+            color: #bcbcb6;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+        }
+
+        /* BAGIAN UMUM */
+
+        section {
+            scroll-margin-top: 95px;
+        }
+
+        .section {
+            padding: 90px 0;
+            border-bottom: 1px solid #242424;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2,
+        .about-heading h2 {
+            margin: 12px 0 0;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(35px, 4.5vw, 58px);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .section-description {
+            max-width: 420px;
+            margin: 0;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* MENU READ LIST SPEAK */
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .menu-card {
+            position: relative;
+            min-height: 310px;
+            padding: 27px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid #303030;
+            border-radius: 5px;
+            transition: .25s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #777;
+            background: #171717;
+        }
+
+        .card-top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-icon {
+            width: 51px;
+            height: 51px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #575752;
+            border-radius: 5px;
+            font-size: 25px;
+        }
+
+        .card-number {
+            color: #777;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .menu-card h3 {
+            margin: 34px 0 8px;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: 34px;
+        }
+
+        .menu-card p {
+            margin: 0 0 25px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .card-link {
+            margin-top: auto;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #aaa;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .card-link span {
+            margin-left: 9px;
+        }
+
+        /* ABOUT US */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 75px;
+            align-items: start;
+        }
+
+        .about-heading h2 {
+            font-size: clamp(36px, 4vw, 53px);
+        }
+
+        .about-quote {
+            margin-top: 30px;
+            padding: 22px;
+            border-left: 2px solid white;
+            background: linear-gradient(90deg, #191919, transparent);
+            color: #ddd;
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .about-copy {
+            color: #bcbcb6;
+            font-size: 14px;
+        }
+
+        .about-copy p:first-child {
+            margin-top: 0;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .value {
+            padding-top: 15px;
+            border-top: 1px solid #484844;
+        }
+
+        .value strong {
+            display: block;
+            color: white;
+            font-size: 12px;
+        }
+
+        .value span {
+            color: #92928c;
+            font-size: 11px;
+        }
+
+        /* EXCLUSIVE */
+
+        .exclusive-box {
+            padding: clamp(28px, 5vw, 58px);
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 45px;
+            align-items: center;
+            background: #f2f2ed;
+            color: #101010;
+            border-radius: 5px;
+        }
+
+        .exclusive-box .eyebrow {
+            color: #565650;
+        }
+
+        .exclusive-box h2 {
+            margin: 14px 0;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(38px, 5vw, 60px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .exclusive-box p {
+            color: #555550;
+            font-size: 13px;
+        }
+
+        .exclusive-box .button {
+            margin-top: 12px;
+            background: #111;
+            border-color: #111;
+            color: white;
+        }
+
+        .exclusive-box .button:hover {
+            background: #333;
+        }
+
+        .exclusive-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .exclusive-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid #d0d0ca;
+            font-size: 13px;
+        }
+
+        .exclusive-list li::before {
+            content: "✓";
+            margin-right: 12px;
+            font-weight: 800;
+        }
+
+        .exclusive-note {
+            margin-top: 14px;
+            color: #8b8b85;
+            font-size: 11px;
+        }
+
+        /* AJAKAN */
+
+        .closing {
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            background: var(--surface);
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        .closing h3 {
+            margin: 0 0 5px;
+            font-family: var(--serif);
+            font-size: 29px;
+            font-weight: 400;
+        }
+
+        .closing p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 32px 0;
+            color: #858580;
+            font-size: 11px;
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 78px;
+                left: 0;
+                right: 0;
+                padding: 22px;
+                background: #101010;
+                border-bottom: 1px solid #333;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .exclusive-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-grid {
+                gap: 40px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .piano-card {
+                min-height: 330px;
+            }
+
+            .piano-keyboard {
+                height: 140px;
+                margin-top: 80px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-card {
+                min-height: 260px;
+            }
+
+            .about-grid {
+                gap: 35px;
+            }
+
+            .closing,
+            .footer-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: calc(100% - 30px);
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .values {
+                grid-template-columns: 1fr;
+            }
+
+            .piano-card {
+                padding: 18px;
+            }
+
+            .closing {
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="container navbar">
+            <a class="brand" href="#home" aria-label="FamChord halaman utama">
+                <span class="brand-icon">♫</span>
+                <span class="brand-name">
+                    FAMCHORD
+                    <small>THE ART OF UNDERSTANDING MUSIC</small>
+                </span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Beranda</a>
+                <a href="#menu">Jelajahi</a>
+                <a href="#about">Tentang Kami</a>
+                <a href="#exclusive">Eksklusif</a>
+            </nav>
+
+            <a class="nav-button" href="#menu">Mulai menjelajah ↗</a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Buka menu"
+                aria-expanded="false">
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- WELCOME PAGE -->
+
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div>
+                    <div class="hero-label">
+                        <span></span>
+                        RUANG UNTUK MUSIK DAN PEMAHAMAN
+                    </div>
+
+                    <p class="eyebrow" style="margin-top: 30px;">
+                        SELAMAT DATANG DI FAMCHORD
+                    </p>
+
+                    <h1>
+                        THE SOUND<br>
+                        <em>WITHIN.</em>
+                    </h1>
+
+                    <p class="hero-copy">
+                        Musik bukan sekadar nada yang kita dengar.
+                        Ada pola, harmoni, dan cerita di balik setiap bunyi.
+                        Temukan cara baru untuk memahami musik, satu nada
+                        demi satu nada.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button" href="#menu">
+                            Mulai Perjalananmu <span>↗</span>
+                        </a>
+
+                        <a class="button button-outline" href="#about">
+                            Kenali FamChord
+                        </a>
+                    </div>
+
+                    <p class="hero-note">
+                        DENGAR. PAHAMI. MAINkan. ULANGI.
+                    </p>
+                </div>
+
+                <div class="piano-card">
+                    <div class="piano-card-top">
+                        <span>FAMCHORD / 001</span>
+                        <span>MUSIC STUDIO</span>
+                    </div>
+
+                    <div class="treble" aria-hidden="true">𝄞</div>
+
+                    <div class="piano-keyboard" aria-hidden="true">
+                        <span class="white-key"><span class="black-key"></span></span>
+                        <span class="white-key"><span class="black-key"></span></span>
+                        <span class="white-key"></span>
+                        <span class="white-key"><span class="black-key"></span></span>
+                        <span class="white-key"><span class="black-key"></span></span>
+                        <span class="white-key"><span class="black-key"></span></span>
+                        <span class="white-key"></span>
+                        <span class="white-key"><span class="black-key"></span></span>
+                    </div>
+
+                    <div class="piano-caption">
+                        <span>LISTEN · LEARN · PLAY</span>
+                        <span>YOUR MUSICAL JOURNEY</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MENU UTAMA -->
+
+        <section class="section" id="menu">
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PILIH RUANG BELAJARMU</p>
+                        <h2>Find your rhythm.</h2>
+                    </div>
+
+                    <p class="section-description">
+                        Setiap orang punya cara belajar yang berbeda.
+                        Pilih ruang yang sesuai dengan kemampuan musik
+                        yang ingin kamu kembangkan.
+                    </p>
+                </div>
+
+                <div class="menu-grid">
+
+                    <article class="menu-card">
+                        <div class="card-top">
+                            <span class="card-icon">♩</span>
+                            <span class="card-number">01 / READ</span>
+                        </div>
+
+                        <h3>Read.</h3>
+
+                        <p>
+                            Baca dan pahami materi musik, teori dasar,
+                            notasi, serta konsep yang membantu kamu
+                            memahami apa yang dimainkan.
+                        </p>
+
+                        <!-- Sesuaikan alamat ini dengan file Read kamu -->
+                        <a class="card-link" href="reading-notes.html">
+                            Masuk ke Read <span>↗</span>
+                        </a>
+                    </article>
+
+                    <article class="menu-card">
+                        <div class="card-top">
+                            <span class="card-icon">♬</span>
+                            <span class="card-number">02 / LIST</span>
+                        </div>
+
+                        <h3>List.</h3>
+
+                        <p>
+                            Kumpulkan lagu, progresi chord, dan referensi
+                            musik favoritmu dalam satu ruang yang
+                            terorganisasi.
+                        </p>
+
+                        <!-- Aktifkan setelah file List dibuat -->
+                        <a class="card-link" href="list.html">
+                            Masuk ke List <span>↗</span>
+                        </a>
+                    </article>
+
+                    <article class="menu-card">
+                        <div class="card-top">
+                            <span class="card-icon">♫</span>
+                            <span class="card-number">03 / SPEAK</span>
+                        </div>
+
+                        <h3>Speak.</h3>
+
+                        <p>
+                            Asah pendengaran musik, kenali pola nada,
+                            dan pelajari hubungan antara bunyi,
+                            chord, serta harmoni.
+                        </p>
+
+                        <!-- Aktifkan setelah file Speak dibuat -->
+                        <a class="card-link" href="speak.html">
+                            Masuk ke Speak <span>↗</span>
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US -->
+
+        <section class="section" id="about">
+            <div class="container about-grid">
+
+                <div class="about-heading">
+                    <p class="eyebrow">CERITA KAMI</p>
+
+                    <h2>
+                        We don't just play music.
+                        <br>
+                        <em>We understand it.</em>
+                    </h2>
+
+                    <div class="about-quote">
+                        "Ketika kita memahami musik, setiap nada
+                        bukan lagi sekadar bunyi, melainkan bagian
+                        dari sebuah cerita."
+                    </div>
+                </div>
+
+                <div class="about-copy">
+                    <p>
+                        <strong>FamChord</strong> adalah konsep ruang
+                        belajar musik yang dirancang untuk membantu
+                        siapa pun memahami musik secara lebih terarah.
+                        Kami menghubungkan teori, pendengaran,
+                        dan praktik dalam satu pengalaman belajar.
+                    </p>
+
+                    <p>
+                        Melalui Read, List, dan Speak, pengguna dapat
+                        mempelajari teori, menyusun referensi,
+                        serta mengembangkan kemampuan mendengar
+                        dan memahami harmoni secara bertahap.
+                    </p>
+
+                    <p>
+                        Kami percaya bahwa belajar musik bukan hanya
+                        tentang seberapa cepat seseorang bisa memainkan
+                        sebuah lagu, tetapi juga tentang seberapa dalam
+                        ia memahami apa yang sedang dimainkan.
+                    </p>
+
+                    <div class="values">
+                        <div class="value">
+                            <strong>UNDERSTAND</strong>
+                            <span>Pahami teorinya.</span>
+                        </div>
+
+                        <div class="value">
+                            <strong>LISTEN</strong>
+                            <span>Kenali bunyinya.</span>
+                        </div>
+
+                        <div class="value">
+                            <strong>CREATE</strong>
+                            <span>Kembangkan musikalitas.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FITUR EKSKLUSIF -->
+
+        <section class="section" id="exclusive">
+            <div class="container">
+
+                <div class="exclusive-box">
+                    <div>
+                        <p class="eyebrow">FAMCHORD EXCLUSIVE</p>
+
+                        <h2>
+                            Go beyond
+                            <br>
+                            the notes.
+                        </h2>
+
+                        <p>
+                            Siap memahami musik lebih dalam?
+                            Ruang eksklusif FamChord dirancang sebagai
+                            konsep untuk latihan yang lebih menantang,
+                            dari memahami fungsi chord hingga
+                            mengembangkan kemampuan mendengar.
+                        </p>
+
+                        <a class="button" href="#exclusive-details">
+                            Jelajahi Fitur <span>↗</span>
+                        </a>
+                    </div>
+
+                    <ul class="exclusive-list" id="exclusive-details">
+                        <li>Latihan progresi chord dan fungsi harmoni</li>
+                        <li>Tantangan transposisi ke berbagai nada dasar</li>
+                        <li>Latihan mengenali pola nada melalui pendengaran</li>
+                        <li>Evaluasi kemampuan dan perkembangan belajar</li>
+                        <li>Ruang pengembangan fitur lanjutan</li>
+                    </ul>
+                </div>
+
+                <p class="exclusive-note">
+                    Catatan: Exclusive saat ini merupakan pratinjau konsep.
+                    Sistem login, pembayaran, langganan, dan pembatasan akses
+                    belum diaktifkan.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- AJAKAN PENUTUP -->
+
+        <section class="section">
+            <div class="container">
+                <div class="closing">
+                    <div>
+                        <p class="eyebrow">MULAI DARI SATU NADA</p>
+
+                        <h3>Temukan suara dalam dirimu.</h3>
+
+                        <p>
+                            Belajar sedikit demi sedikit.
+                            Pahami lebih dalam. Mainkan dengan percaya diri.
+                        </p>
+                    </div>
+
+                    <a class="button" href="#menu">
+                        Mulai Sekarang <span>↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-row">
+
+            <a class="brand" href="#home">
+                <span class="brand-icon">♫</span>
+                <span class="brand-name">
+                    FAMCHORD
+                    <small>THE ART OF UNDERSTANDING MUSIC</small>
+                </span>
+            </a>
+
+            <div class="footer-links">
+                <a href="#home">Beranda</a>
+                <a href="#menu">Jelajahi</a>
+                <a href="#about">Tentang Kami</a>
+                <a href="#exclusive">Eksklusif</a>
+            </div>
+
+            <span>
+                © <span id="year"></span> FamChord
+            </span>
+
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.textContent = "☰";
+            });
+        });
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+```
